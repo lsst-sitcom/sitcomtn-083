@@ -138,10 +138,20 @@ The results are shown in Figure 10. At this point, we are interested in knowing 
 the actuators with the highest rate of failures. 
 
 .. figure:: ./_static/histogram_frequency_of_failures.png
+   :align: center
+   
+   Frequency of failures with spatial distribution of the actuators. The direction of the actuator is shown in orange, 
+   for actuators with failures in the secondary cylinder. Primary actuators will always have failures in the Z direction.
 
-    Frequency of failures with spatial distribution of the actuators. The direction of the actuator is shown in orange, for actuators with 
-    failures in the secondary cylinder. Primary actuators will always have failures in the Z direction.
 
+The figure below shows the same result as the histogram above, but in a different format to highlight the spatial distribution of the actuators with the relative frequency of failures (Figure 11).
+It does not show any quadrant having more failures than the others, 
+but it does show that the actuators with the highest rate of failures are located towards the inner half of the M1M3 mirror cell with a tendency to be located along +X TMA axis.
+
+.. figure:: ./_static/layout_frequency_of_failures.png
+   :align: center
+   
+   Distribution of the relative frequency of failures.
 
 Note, however, we don't have the full set of Bump Tests available in the efd (on Sep 2023), so the results are not representative of the full history of the M1M3 Bump Tests.
 In a separated analysis, we will look at the full history of the Bump Tests, considering that a couple of actuators have been replaced over the past 1-2 years.
@@ -149,14 +159,6 @@ In order to do that, we will need access to the full set of Bump Tests.
 
 In the follow up analysis, we will look into the absolute frequency of failures, which will give us the information on how often a given actuator fails the Bump Test, 
 following also the individual history of each actuator (based on position) before and after the replacement.
-
-The figure below shows the same result as the histogram above, but in a different format to highlight the spatial distribution of the actuators with the relative frequency of failures (Figure 11).
-It does not show any quadrant having more failures than the others, 
-but it does show that the actuators with the highest rate of failures are located towards the inner half of the M1M3 mirror cell with a tendency to be located along +X TMA axis.
-
-.. figure:: ./_static/layout_frequency_of_failures.png
-
-    Distribution of the relative frequency of failures.
 
 
 Summary
