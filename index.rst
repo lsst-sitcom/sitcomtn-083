@@ -130,6 +130,28 @@ The levels and times for the absolute value of the following error are specified
 
 Where non-tested mean all other Force Actuators (FAs)s (the algorithm checks if all other except for tested cylinder doesn't show significant force), tested are error and warning levels for cylinder being tested. The algorithm waits up to SettleTime seconds to see "Measurements" number of measured absolute values dropping below errorr level for FA to pass the test. If measured values venture above "warning" level, but stay within "error" level, a warning is sent into the M1M3 log.
 
+Trouble makers
+==============
+
+I order to determine which actuators causes more trouble, we calculated the rate of failures for all Bump Tests available in the efd to the date. 
+The results are shown in Figure 10. At this point, we are interested in knowing the relative frequency of failures, which will give us an idea of
+the trouble makers. 
+
+.. figure:: ./_static/histogram_frequency_of_failures.png
+
+    Frequency of failures with spatial distribution of the actuators.
+
+
+Note however that to this date, we don't have the full set of Bump Tests available in the efd, so the results are not representative of the full history of the M1M3 Bump Tests.
+In a separated analysis, we will look at the full history of the Bump Tests, considering that a couple of actuators have been replaced in the meantime.
+In order to do that, we will need access to the full set of Bump Tests, which is not available in the efd at this point. 
+In this analysis, we will look into the absolute frequency of failures, which will give us the information on how often a given actuator fails the Bump Test.
+
+.. figure:: ./_static/layout_frequency_of_failures.png
+
+    Layout of failures.
+
+
 Summary
 ==============
 
