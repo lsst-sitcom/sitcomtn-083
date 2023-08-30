@@ -142,7 +142,7 @@ the actuators with the highest rate of failures.
 .. figure:: ./_static/histogram_frequency_of_failures.png
    :align: center
    
-   Frequency of failures with spatial distribution of the actuators. The direction of the Secondary failures are shown in orange on top of the corresponding bar. 
+   Figure 10. Frequency of failures with spatial distribution of the actuators. The direction of the Secondary failures are shown in orange on top of the corresponding bar. 
    Primary actuators will always have failures in the Z direction.
 
 
@@ -154,7 +154,7 @@ Secondary failures are more concentrated towards the -Y TMA axis direction.
 .. figure:: ./_static/layout_frequency_of_failures.png
    :align: center
    
-   Distribution of the relative frequency of failures.
+   FIgure 11. Distribution of the relative frequency of failures.
 
 Note, however, we don't have the full set of Bump Tests available in the efd (on Sep 2023), so the results are not representative of the full history of the M1M3 Bump Tests.
 In a separated analysis, we will look at the full history of the Bump Tests, considering that a couple of actuators have been replaced over the past 1-2 years.
