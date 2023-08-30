@@ -137,38 +137,42 @@ Trouble makers
 
 I order to determine which actuators causes more trouble, we calculated the rate of failures for all Bump Tests available in the efd to the date. 
 The results are shown in Figure 10. At this point, we are interested in knowing the relative frequency of failures, which will give us an idea of
-the actuators with the highest rate of failures. 
+the actuators with the highest rate of failures when compared to the total number of failures.
 
 .. figure:: ./_static/histogram_frequency_of_failures.png
    :align: center
    
    Figure 10. Frequency of failures with spatial distribution of the actuators. The direction of the Secondary failures are shown in orange on top of the corresponding bar. 
-   Primary actuators will always have failures in the Z direction.
+   As stated above, Primary actuators will always have failures in the Z direction.
 
 
-The figure below shows the same result as the histogram above, but in a different format to highlight the spatial distribution of the actuators with the relative frequency of failures (Figure 11).
-It does not show any quadrant having more failures than the others, 
-but it does show that the actuators with the highest rate of failures are located towards the inner half of the M1M3 mirror cell with a tendency to be located along +X TMA axis.
-Secondary failures are more concentrated towards the -Y TMA axis direction.
+The Figure 11 shows the same result as the histogram from Figure 10, but now highlighting the spatial distribution of the actuators with the relative frequency of failures.
+It shows that no quadrant has more failures than the others. 
+However, the actuators with the highest failure rate seem to be located towards the inner half of the M1M3 mirror, 
+with a tendency to be along the +X TMA axis. Secondary failures seem to be more concentrated towards the -Y TMA axis direction.
 
 .. figure:: ./_static/layout_frequency_of_failures.png
    :align: center
    
    FIgure 11. Distribution of the relative frequency of failures.
 
-Note, however, we don't have the full set of Bump Tests available in the efd (on Sep 2023), so the results are not representative of the full history of the M1M3 Bump Tests.
-In a separated analysis, we will look at the full history of the Bump Tests, considering that a couple of actuators have been replaced over the past 1-2 years.
-In order to do that, we will need access to the full set of Bump Tests. 
+At this time (September 2023), we do not have the full set of Bump Tests available in the efd. 
+Therefore, the results shown above are not representative of the full history of the M1M3 Bump Tests. 
+In a separate analysis, we will look at the full history of the Bump Tests, taking into account that a few actuators have been replaced over the past 1-2 years.
 
-In the follow up analysis, we will look into the absolute frequency of failures, which will give us the information on how often a given actuator fails the Bump Test, 
-following also the individual history of each actuator (based on position) before and after the replacement.
+In this follow-up analysis, we will look at the absolute frequency of failures, which will tell us how often a given actuator fails a Bump Test. 
+We will also track the individual history of each actuator (based on position), comparing its behaviour before and after any replacements.
 
 
 Summary
 ==============
 
-This technote describes the M1M3 mirror cell bump tests and describes how they are done and shows some of the results.  All of the plots shown here can be reproduced with the following notebook:
+This technote describes the M1M3 mirror cell bump tests and describes how they are done and shows some of the results.  Most of the plots shown here can be reproduced with the following notebook:
 
 | https://github.com/craiglagegit/Notebook_Keeper/blob/main/
 | mtm1m3_notebooks/MTM1M3_Bump_Test_Technote_Plots_29Jun23.ipynb
 |
+
+The plots showing the rate of failures are part of notebook ``SITCOM_772.ipynb`` from the ``https://github.com/lsst-sitcom/notebooks_vandv`` repository.
+
+
