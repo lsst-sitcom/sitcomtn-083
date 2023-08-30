@@ -10,7 +10,9 @@
 Abstract
 ========
 
-To test the functionality of the pneumatic actuators on the M1M3 mirror cell, small perturbations are applied to each of the actuators in turn.  This technote describes those tests and how to access the test results from the EFD.
+To test the functionality of the pneumatic actuators on the M1M3 mirror cell, small perturbations are applied to each of the actuators in turn.  
+This technote describes those tests and how to access the test results from the EFD.
+It also gives a short summary on the actuators with the highest rate of failures.
 
 Introduction
 ================
@@ -140,8 +142,8 @@ the actuators with the highest rate of failures.
 .. figure:: ./_static/histogram_frequency_of_failures.png
    :align: center
    
-   Frequency of failures with spatial distribution of the actuators. The direction of the actuator is shown in orange, 
-   for actuators with failures in the secondary cylinder. Primary actuators will always have failures in the Z direction.
+   Frequency of failures with spatial distribution of the actuators. The direction of the Secondary failures are shown in orange on top of the corresponding bar. 
+   Primary actuators will always have failures in the Z direction.
 
 
 The figure below shows the same result as the histogram above, but in a different format to highlight the spatial distribution of the actuators with the relative frequency of failures (Figure 11).
