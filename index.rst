@@ -139,11 +139,10 @@ In order to determine which actuators causes more trouble, we calculated the rat
 The results are shown in Figure 10. At this point, we are interested in knowing the relative frequency of failures, which will give us an idea of
 the actuators with the highest rate of failures when compared to the total number of failures.
 
-.. figure:: ./_static/histogram_frequency_of_failures.png
-   :align: center
+.. image:: ./_static/histogram_frequency_of_failures.png
    
-   Figure 10. Frequency of failures with spatial distribution of the actuators. The direction of the Secondary failures are shown in orange on top of the corresponding bar. 
-   As stated above, Primary actuators will always have failures in the Z direction.
+Figure 10. Frequency of failures with spatial distribution of the actuators. The direction of the Secondary failures are shown in orange on top of the corresponding bar. 
+As stated above, Primary actuators will always have failures in the Z direction.
 
 
 The Figure 11 shows the same result as the histogram from Figure 10, but now highlighting the spatial distribution of the actuators with the relative frequency of failures.
@@ -151,10 +150,9 @@ It shows that no quadrant has more failures than the others.
 However, the actuators with the highest failure rate seem to be located towards the inner half of the M1M3 mirror, 
 with a tendency to be along the +X TMA axis. Secondary failures seem to be more concentrated towards the -Y TMA axis direction.
 
-.. figure:: ./_static/layout_frequency_of_failures.png
-   :align: center
+.. image:: ./_static/layout_frequency_of_failures.png
    
-   Figure 11. Distribution of the relative frequency of failures.
+Figure 11. Distribution of the relative frequency of failures.
 
 At this time (September 2023), we do not have the full set of Bump Tests available in the efd. 
 Therefore, the results shown above are not representative of the full history of the M1M3 Bump Tests. 
