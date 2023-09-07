@@ -135,7 +135,7 @@ Where non-tested mean all other Force Actuators (FAs)s (the algorithm checks if 
 Trouble makers
 ==============
 
-I order to determine which actuators causes more trouble, we calculated the rate of failures for all Bump Tests available in the efd to the date. 
+In order to determine which actuators causes more trouble, we calculated the rate of failures for all Bump Tests available in the efd to the date. 
 The results are shown in Figure 10. At this point, we are interested in knowing the relative frequency of failures, which will give us an idea of
 the actuators with the highest rate of failures when compared to the total number of failures.
 
