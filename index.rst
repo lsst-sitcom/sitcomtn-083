@@ -10,7 +10,9 @@
 Abstract
 ========
 
-To test the functionality of the pneumatic actuators on the M1M3 mirror cell, small perturbations are applied to each of the actuators in turn.  This technote describes those tests and how to access the test results from the EFD.
+To test the functionality of the pneumatic actuators on the M1M3 mirror cell, small perturbations are applied to each of the actuators in turn.  
+This technote describes those tests and how to access the test results from the EFD.
+It also gives a short summary on the actuators with the highest rate of failures.
 
 Introduction
 ================
@@ -130,11 +132,47 @@ The levels and times for the absolute value of the following error are specified
 
 Where non-tested mean all other Force Actuators (FAs)s (the algorithm checks if all other except for tested cylinder doesn't show significant force), tested are error and warning levels for cylinder being tested. The algorithm waits up to SettleTime seconds to see "Measurements" number of measured absolute values dropping below errorr level for FA to pass the test. If measured values venture above "warning" level, but stay within "error" level, a warning is sent into the M1M3 log.
 
+Trouble makers
+==============
+
+In order to determine which actuators causes more trouble, we calculated the rate of failures for all Bump Tests available in the efd to the date. 
+The results are shown in Figure 10. At this point, we are interested in knowing the relative frequency of failures, which will give us an idea of
+the actuators with the highest rate of failures when compared to the total number of failures.
+
+.. figure:: ./_static/histogram_frequency_of_failures.png
+   :align: center
+   
+   Figure 10. Frequency of failures with spatial distribution of the actuators. The direction of the Secondary failures are shown in orange on top of the corresponding bar. 
+   As stated above, Primary actuators will always have failures in the Z direction.
+
+
+The Figure 11 shows the same result as the histogram from Figure 10, but now highlighting the spatial distribution of the actuators with the relative frequency of failures.
+It shows that no quadrant has more failures than the others. 
+However, the actuators with the highest failure rate seem to be located towards the inner half of the M1M3 mirror, 
+with a tendency to be along the +X TMA axis. Secondary failures seem to be more concentrated towards the -Y TMA axis direction.
+
+.. figure:: ./_static/layout_frequency_of_failures.png
+   :align: center
+   
+   Figure 11. Distribution of the relative frequency of failures.
+
+At this time (September 2023), we do not have the full set of Bump Tests available in the efd. 
+Therefore, the results shown above are not representative of the full history of the M1M3 Bump Tests. 
+In a separate analysis, we will look at the full history of the Bump Tests, taking into account that a few actuators have been replaced over the past 1-2 years.
+
+In this follow-up analysis, we will look at the absolute frequency of failures, which will tell us how often a given actuator fails a Bump Test. 
+We will also track the individual history of each actuator (based on position), comparing its behaviour before and after any replacements.
+
+
 Summary
 ==============
 
-This technote describes the M1M3 mirror cell bump tests and describes how they are done and shows some of the results.  All of the plots shown here can be reproduced with the following notebook:
+This technote describes the M1M3 mirror cell bump tests and describes how they are done and shows some of the results.  Most of the plots shown here can be reproduced with the following notebook:
 
 | https://github.com/craiglagegit/Notebook_Keeper/blob/main/
 | mtm1m3_notebooks/MTM1M3_Bump_Test_Technote_Plots_29Jun23.ipynb
 |
+
+The plots showing the rate of failures are part of notebook ``SITCOM_772.ipynb`` from the ``https://github.com/lsst-sitcom/notebooks_vandv`` repository.
+
+
