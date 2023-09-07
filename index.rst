@@ -154,7 +154,7 @@ with a tendency to be along the +X TMA axis. Secondary failures seem to be more 
 .. figure:: ./_static/layout_frequency_of_failures.png
    :align: center
    
-   FIgure 11. Distribution of the relative frequency of failures.
+   Figure 11. Distribution of the relative frequency of failures.
 
 At this time (September 2023), we do not have the full set of Bump Tests available in the efd. 
 Therefore, the results shown above are not representative of the full history of the M1M3 Bump Tests. 
