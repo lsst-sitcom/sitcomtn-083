@@ -49,27 +49,33 @@ Figure 4. This shows the actual measured forces applied by the actuators during 
 Bump Test Indexing
 ==================================
 
-The actuators are numbered sequentially from 0-155.  The secondary cylinders and the X, Y, and Z forces are also numbered sequentially.  Since there are different numbers of each of these, a set of look-up tables are provided to go from the actuator ID to the sequential numbers of the actuators of different types.  Table 1 shows how to move between the actuator IDs, the actuator index, and the indices for the various types of actuators. 
+The actuators are numbered sequentially from 0-155.  The secondary cylinders and the X, Y, and Z forces are also numbered sequentially.  Since there are different numbers of each of these, a set of look-up tables are provided to go from the actuator ID to the sequential numbers of the actuators of different types.  Table 1 shows how to move between the actuator IDs, the actuator index, and the indices for the various types of actuators. ::
 
 
-| from lsst.ts.criopy import M1M3FATable
-|
-| Actuator ID (as in Figure 1): 101
-| M1M3FATable.actuator_id_to_index(101) : 0
-| Actuator ID (as in Figure 1): 227
-| M1M3FATable.actuator_id_to_index(227) : 61
-| M1M3FATable.actuator_id_to_index(227, M1M3FATable.FAIndex.SECONDARY):46
-| M1M3FATable.actuator_id_to_index(227, M1M3FATable.FAIndex.Y):42
-| M1M3FATable.actuator_id_to_index(227, M1M3FATable.FAIndex.Z): 61
-|
-| Since all actuators provide force in the Z direction, the ZINDEX and the INDEX are equal.
-|
-| The following actuator is one of the 12 that provides force in the X direction.
-|
-| Actuator ID (as in Figure 1): 135
-| M1M3FATable.actuator_id_to_index(135) : 34
-| M1M3FATable.actuator_id_to_index(135, M1M3FATable.FAIndex.X): 2
+  from lsst.ts.xml.tables.m1m3 import actuator_id_to_index,FAIndex,FATable,force_actuator_from_id
+ 
+  Actuator ID (as in Figure 1): 101
+  actuator_id_to_index(101) : 0
+  force_actuator_from_id(101).index : 0
+  actuator_id_to_index(101, FAIndex.SECONDARY): None
+  force_actuator_from_id(101).s_index : None
+ 
+  actuator_id_to_index(102, FAIndex.SECONDARY): 0
+  force_actuator_from_id(102).s_index : 0
+ 
+  Actuator ID (as in Figure 1): 227
+  actuator_id_to_index(227) : 61
+  actuator_id_to_index(227, FAIndex.SECONDARY):46
+  actuator_id_to_index(227, FAIndex.Y):42
+  actuator_id_to_index(227, FAIndex.Z): 61
 
+  Since all actuators provide force in the Z direction, the ZINDEX and the INDEX are equal.
+
+  The following actuator is one of the 12 that provides force in the X direction.
+
+  Actuator ID (as in Figure 1): 135
+  actuator_id_to_index(135) : 34
+  actuator_id_to_index(135, FAIndex.X): 2
 
 Table1: Navigating between actuator IDs and sequential indices.
 
@@ -91,7 +97,7 @@ XYZ forces vs Cylinder forces
 ==============================
 
 The force data in the EFD includes both the forces applied to the primary and secondary cylinders, as well as the forces in the X, Y, and Z directions.  The X, Y, and Z directions are in the mirror coordinate system, as described in this link (https://confluence.lsstcorp.org/pages/viewpage.action?pageId=47220348). The cylinder forces and the X, Y, Z forces are not the same, as will be explained in this section.  Referring to Figure 6, we see that the primary cylinder applies force in the axial direction, which is along the optical axis of the telescope, and is referred to as the Z direction.  So the force applied by the primary cylinder is equal to the Z-force.  The secondary cylinder however, is at a 45 degree angle to the Z-axis.  So if we want to apply a force in the lateral direction (X or Y), we need to apply a force with the secondary cylinder, and then a negative force with the primary cylinder so that the resultant is in the lateral direction.
-As the angle of the secondary cylinder is 45 degrees, transforming mirror coordinate systems forces into secondary cylinder is (mirror_force) / sqrt(2). Assume Z and Y Dual Axis Actuator (DAA) should produce Z force +10 N, and Y +25 N. Then the primary cylinder force would be 10 - (25 / sqrt(2)) N, and secondary cylinder force would be 25 / sqrt(2) N.
+As the angle of the secondary cylinder is 45 degrees, transforming mirror coordinate systems forces into secondary cylinder is (mirror_force) / sqrt(2). Assume Z and Y Dual Axis Actuator (DAA) should produce Z force +10 N, and Y +25 N. Then the primary cylinder force would be 10 - (25 * sqrt(2)) N, and secondary cylinder force would be 25 * sqrt(2) N.
 
 .. image:: ./_static/Force_Schematic.png
 
