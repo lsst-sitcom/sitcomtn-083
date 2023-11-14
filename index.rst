@@ -118,9 +118,9 @@ Bump Test Following Errors
 
 We can also plot the bump test following errors, which are the difference between the target force and the actual measured force.  The actuator is not able to follow the step function in the applied force, so there is large spike in the following error after a change in the target force.  For this reason, the plot in Figure 9 uses the "symlog" scale, which is linear between -10 N and +10 N, and log above +/-10 N.  This allows one to see the errors in the relatively flat region of the test, which is most important.
 
-.. image:: ./_static/Bump_Test_Following_Errors.png
+.. image:: ./_static/Bump_Test_Following_Errors_112.png
 
-Figure 9. Bump test following errors.
+Figure 9. Bump test following errors. The dotted vertical line shows where the pass/fail decision is made (SettleTime below).  If this is within the red lines (Error below), then the bump test passes.
 
 The levels and times for the absolute value of the following error are specified in M1M3 SS CSC configuration file (ts_config_mttcs/MTM1M3/v1/_init.yaml):
 
@@ -173,11 +173,7 @@ We will also track the individual history of each actuator (based on position), 
 Summary
 ==============
 
-This technote describes the M1M3 mirror cell bump tests and describes how they are done and shows some of the results.  Most of the plots shown here can be reproduced with the following notebook:
-
-| https://github.com/craiglagegit/Notebook_Keeper/blob/main/
-| mtm1m3_notebooks/MTM1M3_Bump_Test_Technote_Plots_29Jun23.ipynb
-|
+This technote describes the M1M3 mirror cell bump tests and describes how they are done and shows some of the results.  Most of the plots shown here can be reproduced with the ``SITCOM_818_SITCOMTN-083.ipynb`` from the ``https://github.com/lsst-sitcom/notebooks_vandv`` repository.
 
 The plots showing the rate of failures are part of notebook ``SITCOM_772.ipynb`` from the ``https://github.com/lsst-sitcom/notebooks_vandv`` repository.
 
