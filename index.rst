@@ -160,19 +160,24 @@ with a tendency to be along the +X TMA axis. Secondary failures seem to be more 
    
 Figure 11. Distribution of the relative frequency of failures.
 
-At this time (September 2023), we do not have the full set of Bump Tests available in the efd. 
+At this time (November 2023), we do not have the full set of Bump Tests available in the efd. 
 Therefore, the results shown above are not representative of the full history of the M1M3 Bump Tests. 
 In a separate analysis, we will look at the full history of the Bump Tests, taking into account that a few actuators have been replaced over the past 1-2 years.
 
 In this follow-up analysis, we will look at the absolute frequency of failures, which will tell us how often a given actuator fails a Bump Test. 
-We will also track the individual history of each actuator (based on position), comparing its behaviour before and after any replacements.
+We will also track the individual history of each actuator (based on position), comparing its behavior before and after any replacements.
 
 
 Summary
 ==============
 
-This technote describes the M1M3 mirror cell bump tests and describes how they are done and shows some of the results.  Most of the plots shown here can be reproduced with the ``SITCOM_818_SITCOMTN-083.ipynb`` from the ``https://github.com/lsst-sitcom/notebooks_vandv`` repository.
+This technote describes the M1M3 mirror cell bump tests and describes how they are done and shows some of the results.  Most of the plots shown here can be reproduced with the `SITCOM_818_SITCOMTN-083.ipynb`_ from the `lsst-sitcom/notebooks_vandv`_ github repository.
 
-The plots showing the rate of failures are part of notebook ``SITCOM_772.ipynb`` from the ``https://github.com/lsst-sitcom/notebooks_vandv`` repository.
+The plots showing the rate of failures are part of the notebook `SITCOM-772_m1m3_bump_test_failure_analysis.ipynb`_ from `lsst-sitcom/notebooks_vandv`_ github repository.
 
 
+.. _lsst-sitcom/notebooks_vandv: https://github.com/lsst-sitcom/notebooks_vandv/
+
+
+.. _SITCOM_818_SITCOMTN-083.ipynb: https://github.com/lsst-sitcom/notebooks_vandv/blob/develop/notebooks/tel_and_site/subsys_req_ver/m1m3/SITCOM-818_SITCOMTN-083.ipynb
+.. _SITCOM-772_m1m3_bump_test_failure_analysis.ipynb: https://github.com/lsst-sitcom/notebooks_vandv/blob/develop/notebooks/tel_and_site/subsys_req_ver/m1m3/SITCOM-772_m1m3_bump_test_failure_analysis.ipynb
