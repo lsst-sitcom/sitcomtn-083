@@ -173,11 +173,11 @@ Summary
 
 This technote describes the M1M3 mirror cell bump tests and describes how they are done and shows some of the results.  Most of the plots shown here can be reproduced with the `SITCOM_818_SITCOMTN-083.ipynb`_ from the `lsst-sitcom/notebooks_vandv`_ github repository.
 
-The plots showing the rate of failures are part of the notebook `SITCOM-772_m1m3_bump_test_failure_analysis.ipynb`_ from `lsst-sitcom/notebooks_vandv`_ github repository.
+The plots showing the rate of failures are part of the notebook `SITCOMTN-083_m1m3_bump_test_failure_analysis.ipynb`_ from `lsst-sitcom/notebooks_vandv`_ github repository.
 
 
 .. _lsst-sitcom/notebooks_vandv: https://github.com/lsst-sitcom/notebooks_vandv/
 
 
 .. _SITCOM_818_SITCOMTN-083.ipynb: https://github.com/lsst-sitcom/notebooks_vandv/blob/develop/notebooks/tel_and_site/subsys_req_ver/m1m3/SITCOM-818_SITCOMTN-083.ipynb
-.. _SITCOM-772_m1m3_bump_test_failure_analysis.ipynb: https://github.com/lsst-sitcom/notebooks_vandv/blob/develop/notebooks/tel_and_site/subsys_req_ver/m1m3/SITCOM-772_m1m3_bump_test_failure_analysis.ipynb
+.. _SITCOMTN-083_m1m3_bump_test_failure_analysis.ipynb: https://github.com/lsst-sitcom/notebooks_vandv/blob/develop/notebooks/tel_and_site/subsys_req_ver/m1m3/SITCOMTN-083_m1m3_bump_test_failure_analysis.ipynb
