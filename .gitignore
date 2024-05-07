@@ -1,3 +1,5 @@
 _build/
-.venv
-.vscode
+.technote/
+.tox/
+venv/
+.venv/

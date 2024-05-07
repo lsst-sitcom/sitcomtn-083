@@ -1,6 +1,12 @@
-:tocdepth: 1
+#############################
+M1M3 mirror cell bump testing
+#############################
 
-.. sectnum::
+.. abstract::
+
+   To test the functionality of the pneumatic actuators on the M1M3 mirror cell, small perturbations are applied to each of the actuators in turn.  This technote describes those tests and how to access the test results from the EFD.
+
+
 
 .. Metadata such as the title, authors, and description are set in metadata.yaml
 
@@ -10,7 +16,7 @@
 Abstract
 ========
 
-To test the functionality of the pneumatic actuators on the M1M3 mirror cell, small perturbations are applied to each of the actuators in turn.  
+To test the functionality of the pneumatic actuators on the M1M3 mirror cell, small perturbations are applied to each of the actuators in turn.
 This technote describes those tests and how to access the test results from the EFD.
 It also gives a short summary on the actuators with the highest rate of failures.
 
@@ -53,16 +59,16 @@ The actuators are numbered sequentially from 0-155.  The secondary cylinders and
 
 
   from lsst.ts.xml.tables.m1m3 import actuator_id_to_index,FAIndex,FATable,force_actuator_from_id
- 
+
   Actuator ID (as in Figure 1): 101
   actuator_id_to_index(101) : 0
   force_actuator_from_id(101).index : 0
   actuator_id_to_index(101, FAIndex.SECONDARY): None
   force_actuator_from_id(101).s_index : None
- 
+
   actuator_id_to_index(102, FAIndex.SECONDARY): 0
   force_actuator_from_id(102).s_index : 0
- 
+
   Actuator ID (as in Figure 1): 227
   actuator_id_to_index(227) : 61
   actuator_id_to_index(227, FAIndex.SECONDARY):46
@@ -141,30 +147,30 @@ Where non-tested mean all other Force Actuators (FAs)s (the algorithm checks if 
 Trouble makers
 ==============
 
-In order to determine which actuators causes more trouble, we calculated the rate of failures for all Bump Tests available in the efd to the date. 
+In order to determine which actuators causes more trouble, we calculated the rate of failures for all Bump Tests available in the efd to the date.
 The results are shown in Figure 10. At this point, we are interested in knowing the relative frequency of failures, which will give us an idea of
 the actuators with the highest rate of failures when compared to the total number of failures.
 
 .. image:: ./_static/histogram_frequency_of_failures.png
-   
-Figure 10. Frequency of failures with spatial distribution of the actuators. The direction of the Secondary failures are shown in orange on top of the corresponding bar. 
+
+Figure 10. Frequency of failures with spatial distribution of the actuators. The direction of the Secondary failures are shown in orange on top of the corresponding bar.
 As stated above, Primary actuators will always have failures in the Z direction.
 
 
 The Figure 11 shows the same result as the histogram from Figure 10, but now highlighting the spatial distribution of the actuators with the relative frequency of failures.
-It shows that no quadrant has more failures than the others. 
-However, the actuators with the highest failure rate seem to be located towards the inner half of the M1M3 mirror, 
+It shows that no quadrant has more failures than the others.
+However, the actuators with the highest failure rate seem to be located towards the inner half of the M1M3 mirror,
 with a tendency to be along the +X TMA axis. Secondary failures seem to be more concentrated towards the -Y TMA axis direction.
 
 .. image:: ./_static/layout_frequency_of_failures.png
-   
+
 Figure 11. Distribution of the relative frequency of failures.
 
-At this time (November 2023), we do not have the full set of Bump Tests available in the efd. 
-Therefore, the results shown above are not representative of the full history of the M1M3 Bump Tests. 
+At this time (November 2023), we do not have the full set of Bump Tests available in the efd.
+Therefore, the results shown above are not representative of the full history of the M1M3 Bump Tests.
 In a separate analysis, we will look at the full history of the Bump Tests, taking into account that a few actuators have been replaced over the past 1-2 years.
 
-In this follow-up analysis, we will look at the absolute frequency of failures, which will tell us how often a given actuator fails a Bump Test. 
+In this follow-up analysis, we will look at the absolute frequency of failures, which will tell us how often a given actuator fails a Bump Test.
 We will also track the individual history of each actuator (based on position), comparing its behavior before and after any replacements.
 
 
