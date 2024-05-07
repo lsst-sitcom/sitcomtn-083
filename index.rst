@@ -4,21 +4,15 @@ M1M3 mirror cell bump testing
 
 .. abstract::
 
-   To test the functionality of the pneumatic actuators on the M1M3 mirror cell, small perturbations are applied to each of the actuators in turn.  This technote describes those tests and how to access the test results from the EFD.
-
+   To test the functionality of the pneumatic actuators on the M1M3 mirror cell, small perturbations are applied to each of the actuators in turn.
+   This technote describes those tests and how to access the test results from the EFD.
+   It also gives a short summary on the actuators with the highest rate of failures.
 
 
 .. Metadata such as the title, authors, and description are set in metadata.yaml
 
 .. TODO: Delete the note below before merging new content to the main branch.
 
-
-Abstract
-========
-
-To test the functionality of the pneumatic actuators on the M1M3 mirror cell, small perturbations are applied to each of the actuators in turn.
-This technote describes those tests and how to access the test results from the EFD.
-It also gives a short summary on the actuators with the highest rate of failures.
 
 Introduction
 ================
