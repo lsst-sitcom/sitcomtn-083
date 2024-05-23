@@ -49,9 +49,10 @@ Figure 4. This shows the actual measured forces applied by the actuators during 
 Bump Test Indexing
 ==================================
 
-The actuators are numbered sequentially from 0-155.  The secondary cylinders and the X, Y, and Z forces are also numbered sequentially.  Since there are different numbers of each of these, a set of look-up tables are provided to go from the actuator ID to the sequential numbers of the actuators of different types.  Table 1 shows how to move between the actuator IDs, the actuator index, and the indices for the various types of actuators. ::
+The actuators are numbered sequentially from 0-155.  The secondary cylinders and the X, Y, and Z forces are also numbered sequentially.  Since there are different numbers of each of these, a set of look-up tables are provided to go from the actuator ID to the sequential numbers of the actuators of different types.  Table 1 shows how to move between the actuator IDs, the actuator index, and the indices for the various types of actuators.
 
-
+::
+   
   from lsst.ts.xml.tables.m1m3 import actuator_id_to_index,FAIndex,FATable,force_actuator_from_id
 
   Actuator ID (as in Figure 1): 101
@@ -167,6 +168,52 @@ In a separate analysis, we will look at the full history of the Bump Tests, taki
 In this follow-up analysis, we will look at the absolute frequency of failures, which will tell us how often a given actuator fails a Bump Test.
 We will also track the individual history of each actuator (based on position), comparing its behavior before and after any replacements.
 
+Types of bump test failures
+==============================
+
+David Sanmartim has written code to find and characterize all of the bump test failures between 2023-11-01 and 2024-01-15.  The nights between 2023-11-09 and 2023-12-12 were omitted because there were some unexplained failures.  This represents 164 different bump test failures. Table 2 shows the type of information available from the EFD.  Figures 12, 13, 14, and 15 show different ways to look at the failures.  Table 3 also shows high-level statistics of all of the bump test failures.
+
+In the data directory of this technote is a set of plots of all of the bump test failures, labeled Bump_Test_Failures_01Apr24.pdf.
+ 
+::
+   
+ Time: 2023-11-30 00:00:00
+ ID: 235
+ Orientation: Z
+ Index: 69
+ Error Message: measured force plus (204.525) is too far 222±5
+ MeasuredForce: 204.525
+ AppliedForceDirection: Positive
+ Deviation: -17.475
+ AbsMeasuredForce: 204.525
+ DaysSinceFirst: 22
+
+Table 2: Information on bump test failures in the EFD
+
+.. image:: ./_static/absolute_measured_forces_with_age_of_error.png
+
+Figure 12. Absolute Measured Forces by FA ID.
+
+.. image:: ./_static/average_deviation_with_dispersion_and_colorbar.png
+
+Figure 13. Average Deviation with Dispersion by Actuator ID and Error Type.
+
+.. image:: ./_static/absolute_measured_force_over_time.png
+
+Figure 14. Absolute Measured Force for Failed Actuators.
+
+.. image:: ./_static/Bump_Test_Failures_12May24.png
+
+Figure 15. Bump test failure types, 2023-11-01 to 2024-01-15.
+
+
+ * actual force overshoot compared to the demanded force: about 23%
+ * actual force undershoot compared to the demanded force: about 74%
+ * excessive latency of the actual force compared to the demanded force: None seen
+ * locked/constant force independent of demand: about 6%
+
+Table 3:  Statistics of bump test failure
+
 
 Summary
 ==============
@@ -175,9 +222,11 @@ This technote describes the M1M3 mirror cell bump tests and describes how they a
 
 The plots showing the rate of failures are part of the notebook `SITCOMTN-083_m1m3_bump_test_failure_analysis.ipynb`_ from `lsst-sitcom/notebooks_vandv`_ github repository.
 
+The plots in the last section showing the fail statistics were generated with `SITCOM-1165_m1m3_bump_test_error_and_measured_forces.ipynb`_  from `lsst-sitcom/notebooks_vandv`_ github repository.
 
 .. _lsst-sitcom/notebooks_vandv: https://github.com/lsst-sitcom/notebooks_vandv/
 
 
 .. _SITCOM_818_SITCOMTN-083.ipynb: https://github.com/lsst-sitcom/notebooks_vandv/blob/develop/notebooks/tel_and_site/subsys_req_ver/m1m3/SITCOM-818_SITCOMTN-083.ipynb
 .. _SITCOMTN-083_m1m3_bump_test_failure_analysis.ipynb: https://github.com/lsst-sitcom/notebooks_vandv/blob/develop/notebooks/tel_and_site/subsys_req_ver/m1m3/SITCOMTN-083_m1m3_bump_test_failure_analysis.ipynb
+.. _SITCOM-1165_m1m3_bump_test_error_and_measured_forces.ipynb: https://github.com/lsst-sitcom/notebooks_vandv/blob/develop/notebooks/tel_and_site/subsys_req_ver/m1m3/SITCOM-1165_m1m3_bump_test_error_and_measured_forces.ipynb
