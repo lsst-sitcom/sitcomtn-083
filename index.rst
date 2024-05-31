@@ -220,6 +220,8 @@ Summary
 
 This technote describes the M1M3 mirror cell bump tests and describes how they are done and shows some of the results.  Most of the plots shown here can be reproduced with the `SITCOM_818_SITCOMTN-083.ipynb`_ from the `lsst-sitcom/notebooks_vandv`_ github repository.
 
+The notebook that made Figure 2 is in the notebooks directory of this technote, and is called MTM1M3_Movie_16Nov23.ipynb. It can also make movies of the actuator forces vs time.
+
 The plots showing the rate of failures are part of the notebook `SITCOMTN-083_m1m3_bump_test_failure_analysis.ipynb`_ from `lsst-sitcom/notebooks_vandv`_ github repository.
 
 The plots in the last section showing the fail statistics were generated with `SITCOM-1165_m1m3_bump_test_error_and_measured_forces.ipynb`_  from `lsst-sitcom/notebooks_vandv`_ github repository.
