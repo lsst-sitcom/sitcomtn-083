@@ -94,6 +94,21 @@ returns where in the bump test cycle the test is.  Figure 5 shows the progressio
 
 Figure 5. This shows the bump test states as logged in  lsst.sal.MTM1M3.logevent_forceActuatorBumpTestStatus.
 
+Finding Individual Bump Tests
+==============================
+
+When a bump test is finished, it keeps publishing the status (either PASSED or FAILED) until the next bump test is started.
+From diagram above, a bump test is considered to be successful if it follows the sequence of states as shown in Figure 5: 
+
+|
+|  "NOTTESTED"-> "TESTINGPOSITIVE"->"TESTINGPOSITIVEWAIT"-> "TESTINGNEGATIVE"->"TESTINGNEGATIVEWAIT"-> "PASSED". 
+|
+
+If the sequence is broken at any point, the test is considered to have failed. 
+
+
+
+
 XYZ forces vs Cylinder forces
 ==============================
 
@@ -138,6 +153,8 @@ The levels and times for the absolute value of the following error are specified
 |
 
 Where non-tested mean all other Force Actuators (FAs)s (the algorithm checks if all other except for tested cylinder doesn't show significant force), tested are error and warning levels for cylinder being tested. The algorithm waits up to SettleTime seconds to see "Measurements" number of measured absolute values dropping below errorr level for FA to pass the test. If measured values venture above "warning" level, but stay within "error" level, a warning is sent into the M1M3 log.
+
+
 
 Trouble makers
 ==============
