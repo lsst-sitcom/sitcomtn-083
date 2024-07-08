@@ -18,13 +18,15 @@ Introduction
 ================
 The M1M3 mirror cell supports the weight of the M1M3 primary mirror for the Simonyi telescope.  The 17 tons of mirror are supported by 156 pneumatic actuators where 44 are single-axis and provide support only in the axial direction (parallel to the telescope optical axis), 100 are dual-axis providing support in the axial and lateral direction, and 12 are dual-axis providing support in the axial and cross lateral directions.  Figures 1 and 2 show the locations of the actuators.  Figure 2 shows the actuator types.  Note that most of the dual-axis actuators apply force in the +Y direction.  This is because this is the force needed to support the weight of the mirror as the telescope tilts to lower elevations.
 
-.. image:: ./_static/Actuators.png
+.. figure:: ./_static/Actuators.png
+   :alt: Actuator locations
 
-Figure 1.  A screenshot of the MTM1M3 GUI, showing the actuator locations and IDs.
+   A screenshot of the MTM1M3 GUI, showing the actuator locations and IDs.
 
-.. image:: ./_static/Actuator_Types.png
+.. figure:: ./_static/Actuator_Types.png
+   :alt: Actuator types
 
-Figure 2. This figure shows the actuator types.
+   This figure shows the actuator types.
 
 
 Positioning is provided by 6 hard points in a hexapod configuration which moves the mirror to a fixed operational position that shall be maintained during telescope operations. The remaining optical elements will be moved relative to this position in order to align the telescope optics. Support and optical figure correction is provided by the pneumatic actuators.
@@ -37,13 +39,15 @@ Bump Test Overview
 
 During the bump test, perturbations of about 200 N are applied to the actuators for a few seconds.  Figure 3 shows the target forces to be applied, and Figure 4 shows the actual measured forces.
 
-.. image:: ./_static/Bump_Test_Target.png
+.. figure:: ./_static/Bump_Test_Target.png
+   :alt: Target forces
 
-Figure 3.  This shows the target forces to be applied to the actuators during the bump test of a single actuator.
+   This shows the target forces to be applied to the actuators during the bump test of a single actuator.
 
-.. image:: ./_static/Bump_Test_Results.png
+.. figure:: ./_static/Bump_Test_Results.png
+   :alt: Actual measured forces
 
-Figure 4. This shows the actual measured forces applied by the actuators during the bump test of a single actuator
+   This shows the actual measured forces applied by the actuators during the bump test of a single actuator
 
 
 Bump Test Indexing
@@ -78,7 +82,7 @@ The actuators are numbered sequentially from 0-155.  The secondary cylinders and
   actuator_id_to_index(135) : 34
   actuator_id_to_index(135, FAIndex.X): 2
 
-Table1: Navigating between actuator IDs and sequential indices.
+Table 1: Navigating between actuator IDs and sequential indices.
 
 Bump Test States
 ==================================
@@ -90,24 +94,26 @@ As the bump test cycles through the testing, the EFD location:
 
 returns where in the bump test cycle the test is.  Figure 5 shows the progression of these states.  At the conclusion of the test for each actuator, the state will either be 6 (PASSED) or 7 (FAILED).  the pass-fail criteria are described later in the "Bump Test Following Errors" section.
 
-.. image:: ./_static/Bump_Test_States.png
+.. figure:: ./_static/Bump_Test_States.png
+   :alt: Bump test states
 
-Figure 5. This shows the bump test states as logged in  lsst.sal.MTM1M3.logevent_forceActuatorBumpTestStatus.
+   This shows the bump test states as logged in `lsst.sal.MTM1M3.logevent_forceActuatorBumpTestStatus`.
+
 
 Finding Individual Bump Tests
 ==============================
 
 When a bump test is finished, it keeps publishing the status (either PASSED or FAILED) until the next bump test is started.
-From diagram above, a bump test is considered to be successful if it follows the sequence of states as shown in Figure 5: 
+From the diagram above, a bump test is considered to be successful if it follows the sequence of states as shown in Figure 5: 
 
-|
-|  "NOTTESTED"-> "TESTINGPOSITIVE"->"TESTINGPOSITIVEWAIT"-> "TESTINGNEGATIVE"->"TESTINGNEGATIVEWAIT"-> "PASSED". 
-|
+::
+
+  "NOTTESTED" -> "TESTINGPOSITIVE" -> "TESTINGPOSITIVEWAIT" -> 
+  -> "TESTINGNEGATIVE" -> "TESTINGNEGATIVEWAIT" -> "PASSED" 
+
 
 If the sequence is broken at any point, the test is considered to have failed. 
-
-
-
+We used that information to find the start and end of each bump test, and then obtain absolute statistics for the rate of failures (Sec. :ref:`Trouble-makers`).  
 
 XYZ forces vs Cylinder forces
 ==============================
@@ -115,28 +121,32 @@ XYZ forces vs Cylinder forces
 The force data in the EFD includes both the forces applied to the primary and secondary cylinders, as well as the forces in the X, Y, and Z directions.  The X, Y, and Z directions are in the mirror coordinate system, as described in this link (https://confluence.lsstcorp.org/pages/viewpage.action?pageId=47220348). The cylinder forces and the X, Y, Z forces are not the same, as will be explained in this section.  Referring to Figure 6, we see that the primary cylinder applies force in the axial direction, which is along the optical axis of the telescope, and is referred to as the Z direction.  So the force applied by the primary cylinder is equal to the Z-force.  The secondary cylinder however, is at a 45 degree angle to the Z-axis.  So if we want to apply a force in the lateral direction (X or Y), we need to apply a force with the secondary cylinder, and then a negative force with the primary cylinder so that the resultant is in the lateral direction.
 As the angle of the secondary cylinder is 45 degrees, transforming mirror coordinate systems forces into secondary cylinder is (mirror_force) / sqrt(2). Assume Z and Y Dual Axis Actuator (DAA) should produce Z force +10 N, and Y +25 N. Then the primary cylinder force would be 10 - (25 * sqrt(2)) N, and secondary cylinder force would be 25 * sqrt(2) N.
 
-.. image:: ./_static/Force_Schematic.png
-
-Figure 6. This schematic of the actuators shows the relation between the cylinder forces and the resulting axial and lateral forces.
+.. figure:: ./_static/Force_Schematic.png
+   :alt: Force schematic
+   
+   This schematic of the actuators shows the relation between the cylinder forces and the resulting axial and lateral forces.
 
 The primary and secondary forces are what is actually measured, and the X, Y, and Z forces are calculated from these forces and the known geometry.  So Figures 3 and 4 show the Y and Z forces.  Figures 7 and 8 show the target and actual forces in the primary and secondary cylinders.  Note the negative primary force being applied during the secondary bump test.
 
-.. image:: ./_static/Bump_Test_Cylinder_Target.png
+.. figure:: ./_static/Bump_Test_Cylinder_Target.png
+   :alt: Target forces
+   
+   This shows the target forces to be applied to the primary and secondary actuators during the bump test of a single actuator.
 
-Figure 7.  This shows the target forces to be applied to the primary and secondary actuators during the bump test of a single actuator.
+.. figure:: ./_static/Bump_Test_Cylinder_Results.png
+   :alt: Actual measured forces
 
-.. image:: ./_static/Bump_Test_Cylinder_Results.png
-
-Figure 8. This shows the actual measured forces applied by the primary and secondary actuators during the bump test of a single actuator
+   This shows the actual measured forces applied by the primary and secondary actuators during the bump test of a single actuator
 
 Bump Test Following Errors
 ==============================
 
 We can also plot the bump test following errors, which are the difference between the target force and the actual measured force.  The actuator is not able to follow the step function in the applied force, so there is large spike in the following error after a change in the target force.  For this reason, the plot in Figure 9 uses the "symlog" scale, which is linear between -10 N and +10 N, and log above +/-10 N.  This allows one to see the errors in the relatively flat region of the test, which is most important.
 
-.. image:: ./_static/Bump_Test_Following_Errors_112.png
-
-Figure 9. Bump test following errors. The dotted vertical line shows where the pass/fail decision is made (SettleTime below).  If this is within the red lines (Error below), then the bump test passes.
+.. figure:: ./_static/Bump_Test_Following_Errors_112.png
+   :alt: Bump test following errors
+   
+   Bump test following errors. The dotted vertical line shows where the pass/fail decision is made (SettleTime below).  If this is within the red lines (Error below), then the bump test passes.
 
 The levels and times for the absolute value of the following error are specified in M1M3 SS CSC configuration file (ts_config_mttcs/MTM1M3/v1/_init.yaml):
 
@@ -155,40 +165,36 @@ The levels and times for the absolute value of the following error are specified
 Where non-tested mean all other Force Actuators (FAs)s (the algorithm checks if all other except for tested cylinder doesn't show significant force), tested are error and warning levels for cylinder being tested. The algorithm waits up to SettleTime seconds to see "Measurements" number of measured absolute values dropping below errorr level for FA to pass the test. If measured values venture above "warning" level, but stay within "error" level, a warning is sent into the M1M3 log.
 
 
+.. _Trouble-makers:
 
 Trouble makers
 ==============
 
-In order to determine which actuators causes more trouble, we calculated the rate of failures for all Bump Tests available in the efd to the date.
-The results are shown in Figure 10. At this point, we are interested in knowing the relative frequency of failures, which will give us an idea of
-the actuators with the highest rate of failures when compared to the total number of failures.
+In order to determine which actuators causes more trouble, we calculated the rate of failures for all Bump Tests available in the efd to the date, before glass installation.
+In Figure 10, we show the absolute frequency of failures over the total executed bump test for each actuator. 
+Note that secondary actuators fail mostly in the Y direction, with only actuator 235 having a failure in the X direction (it has been replaced since then).
 
-.. image:: ./_static/histogram_frequency_of_failures.png
+.. figure:: ./_static/histogram_frequency_of_failures.png
+   :alt: Total frequency of failures with spatial distribution of the actuators.
 
-Figure 10. Frequency of failures with spatial distribution of the actuators. The direction of the Secondary failures are shown in orange on top of the corresponding bar.
-As stated above, Primary actuators will always have failures in the Z direction.
+   Total frequency of failures with spatial distribution of the actuators. 
+   The direction of the Secondary failures are shown in orange on top of the corresponding bar along with the total failures *versus* the total number of bump tests executed.
+   As stated above, Primary actuators will always have failures in the Z direction.
 
 
-The Figure 11 shows the same result as the histogram from Figure 10, but now highlighting the spatial distribution of the actuators with the relative frequency of failures.
+Figure 11 shows the same result as the histogram from Figure 10, but now highlighting the spatial distribution of the actuators with the relative frequency of failures.
 It shows that no quadrant has more failures than the others.
-However, the actuators with the highest failure rate seem to be located towards the inner half of the M1M3 mirror,
-with a tendency to be along the +X TMA axis. Secondary failures seem to be more concentrated towards the -Y TMA axis direction.
 
-.. image:: ./_static/layout_frequency_of_failures.png
+.. figure:: ./_static/layout_frequency_of_failures.png
+   :alt: Distribution of the relative frequency of failures.
 
-Figure 11. Distribution of the relative frequency of failures.
+   Distribution of the relative frequency of failures.
 
-At this time (November 2023), we do not have the full set of Bump Tests available in the efd.
-Therefore, the results shown above are not representative of the full history of the M1M3 Bump Tests.
-In a separate analysis, we will look at the full history of the Bump Tests, taking into account that a few actuators have been replaced over the past 1-2 years.
-
-In this follow-up analysis, we will look at the absolute frequency of failures, which will tell us how often a given actuator fails a Bump Test.
-We will also track the individual history of each actuator (based on position), comparing its behavior before and after any replacements.
 
 Types of bump test failures
 ==============================
 
-David Sanmartim has written code to find and characterize all of the bump test failures between 2023-11-01 and 2024-01-15.  The nights between 2023-11-09 and 2023-12-12 were omitted because there were some unexplained failures.  This represents 164 different bump test failures. Table 2 shows the type of information available from the EFD.  Figures 12, 13, 14, and 15 show different ways to look at the failures.  Table 3 also shows high-level statistics of all of the bump test failures.
+David Sanmartim has written code to find and characterize all of the bump test failures between 2023-11-01 and 2024-01-15.  The nights between 2023-11-09 and 2023-12-12 were omitted because there were some unexplained failures.  This represents 164 different bump test failures. Table 2 shows the type of information available from the EFD.  Figures 12, 13, 14, and 15 show different ways to look at the failures.
 
 In the data directory of this technote is a set of plots of all of the bump test failures, labeled Bump_Test_Failures_01Apr24.pdf.
  
@@ -207,29 +213,46 @@ In the data directory of this technote is a set of plots of all of the bump test
 
 Table 2: Information on bump test failures in the EFD
 
-.. image:: ./_static/absolute_measured_forces_with_age_of_error.png
+.. figure:: ./_static/absolute_measured_forces_with_age_of_error.png
+   :alt: Absolute Measured Forces by FA ID
+   
+   Absolute Measured Forces by FA ID.
 
-Figure 12. Absolute Measured Forces by FA ID.
+.. figure:: ./_static/average_deviation_with_dispersion_and_colorbar.png
+   :alt: Average Deviation with Dispersion by Actuator ID and Error Type.
 
-.. image:: ./_static/average_deviation_with_dispersion_and_colorbar.png
+   Average Deviation with Dispersion by Actuator ID and Error Type.
 
-Figure 13. Average Deviation with Dispersion by Actuator ID and Error Type.
+.. figure:: ./_static/absolute_measured_force_over_time.png
+   :alt: Absolute Measured Force for Failed Actuators.
 
-.. image:: ./_static/absolute_measured_force_over_time.png
-
-Figure 14. Absolute Measured Force for Failed Actuators.
-
-.. image:: ./_static/Bump_Test_Failures_12May24.png
-
-Figure 15. Bump test failure types, 2023-11-01 to 2024-01-15.
+   Absolute Measured Force for Failed Actuators.
 
 
- * actual force overshoot compared to the demanded force: about 23%
- * actual force undershoot compared to the demanded force: about 74%
- * excessive latency of the actual force compared to the demanded force: None seen
- * locked/constant force independent of demand: about 6%
+From Figs. 11, 12 and 13 we can summarize that: 
 
-Table 3:  Statistics of bump test failure
+* The actuators are more likely to fail when they are pushing the mirror up, rather than down.
+  The magnitudes of the deviations tend also to be larger for forces applied in the positive direction.
+
+* The actuators that failed the bump test are not getting worse over time,
+  as the measured forces don't follow any specific trend over time.
+
+* Actuators that pass the bump test would also need to publish/report the measured forces in the EFD,
+  so we can monitor them overtime and catch possible failures before they actually happen.
+
+The figure below have a summary of the bump test failure types:
+
+.. figure:: ./_static/Bump_Test_Failures_12May24.png
+   :alt: Bump test failure types
+   
+   Bump test failure types, 2023-11-01 to 2024-01-15.
+
+High-level statistics of all of the bump test failures:
+
+* actual force overshoot compared to the demanded force: about 23%.
+* actual force undershoot compared to the demanded force: about 74%.
+* excessive latency of the actual force compared to the demanded force: None seen.
+* locked/constant force independent of demand: about 6%.
 
 
 Summary
